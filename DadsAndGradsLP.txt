@@ -1,0 +1,18 @@
+"Dads and Grads" Logic Puzzle
+
+General Rules (GR): Three are dads, three are respective children; Michael, Ken, James, Alberto, Elias, Stephanie
+
+Parameters, or P:
+P#1: Stephanie went to the senior prom with Michael’s son.
+P#2: Elias and James played on the school’s baseball team. One of them is Alberto’s son.
+P#3: Michael and Elias are not related.
+
+Solution:
+Use P#1 to determine Stephanie is one of the kids. 
+Use P#2 to determine that Elias and James are the two other kids.
+The three graduates are therefore Stephanie, Elias, and James; the three parents must be Michael, Ken, and Alberto.
+If Stephanie is not Michael’s child (P#1) and Elias is not Michael’s child (P#3), then James is Michael’s child.
+Either James or Elias is Alberto’s child in P#2; since we established James is Michael’s child, Elias must be Alberto’s child.
+This leaves Stephanie to be Ken’s child by elimination. 
+
+Answer (father, child): (Michael, James) (Alberto, Elias) (Ken, Stephanie)
