@@ -1,0 +1,22 @@
+"Allergy Season" Logic Puzzle
+
+General Rules (GR): Five friends all (Allegra, Ben, Clara, Flora, Zach) all allergic to something different: pollen, shellfish, bee stings, cats, or nuts.
+
+Parameters, or P:
+
+P#1: Allegra has a food allergy
+P#2: Ben can play with his kitten for hours without issue (or medicine)
+P#3: Clara’s allergy is not related to animals
+P#4: Flora has seasonal allergies
+
+Solution:
+
+Flora has seasonal allergies (P#4) applying only to pollen. 
+Flora is allergic to pollen. 
+Clara’s allergies involve only pollen or nuts (P#3), and we established Flora’s pollen allergy, so Clara is allergic to nuts by elimination. 
+Allegra’s food allergy (P#1) applies to shellfish or nuts and, by elimination thus far, must be shellfish.
+This leaves bee stings and cats for either Ben or Zach.
+Ben is not allergic to his cat (P#2), so Ben is allergic to bee stings and Zach is allergic to cats by elimination.
+
+Answer (Name, Allergy): (Flora, pollen) (Clara, nuts) (Allegra, shellfish) (Ben, bee stings) (Zach, cats)
+
