@@ -1,2 +1,2 @@
 # AlecsanderGaloRevature1
-Logic Puzzles
+Training Files/Codes
