@@ -1,4 +1,5 @@
 red="\033[31m"
+redb="\033[4red="\033[31m"
 redb="\033[41m"
 green="\033[32m"
 greenb="\033[42m"
@@ -7,8 +8,8 @@ nc="\033[0m"
 echo -e ${bold}Enter your name to begin.${nc}
 read name
 
-echo -e ${green}Hi $name, welcome to ${bold}Severely Limited Calculator™.${nc}
-while [ true ]
+echo -e ${green}Hi $name, welcome to ${bold}Serverely Limited Calculator™.${nc}
+while [ x != q ]
 do
 echo -e "\n"
 echo -e "${green}${bold}What function would you like to perform?${nc}" 
@@ -59,4 +60,3 @@ if [ $x == q ];
 	then exit
 	fi 
 done
-
