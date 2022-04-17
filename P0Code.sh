@@ -7,12 +7,12 @@ nc="\033[0m"
 echo -e ${bold}Enter your name to begin.${nc}
 read name
 
-echo -e ${green}Hi $name, welcome to ${bold}Serverely Limited Calculator™.${nc}
-while [ x != q ]
+echo -e ${green}Hi $name, welcome to ${bold}Severely Limited Calculator™.${nc}
+while [ true ]
 do
 echo -e "\n"
-echo -e "${green}${bold}What function would you like to perform?${nc}" 
-echo -e "     ${green}'a' to add - 's' to substract - 'm' to multiply - 'd' to divide${nc}"
+echo -e "$green${bold}What function would you like to perform?${nc}"
+echo -e "     ${green}'a' to add - 's' to subtract - 'm' to multiply - 'd' to divide${nc}"
 echo -e ${bold}"     'q' to quit${nc}"
 read x
 
@@ -29,21 +29,21 @@ if [ $x == s ];
         read sub1
         echo -e "${bold}Please enter second number${nc}"
         read sub2
-	sub3=$((sub1 - sub2))
-	echo -e "${bold}${greenb}The difference is $sub3${nc}"
-	fi
+        sub3=$((sub1 - sub2))
+        echo -e "${bold}${greenb}The difference is $sub3${nc}"
+        fi
 if [ $x == m ];
 	then echo -e "${bold}Please enter first number${nc}"
         read mult1
         echo -e "${bold}Please enter second number${nc}"
         read mult2
-	mult3=$((mult1 * mult2))
-	echo -e "${bold}${greenb}The product is $mult3${nc}"
-	fi
+        mult3=$((mult1 * mult2))
+        echo -e "${bold}${greenb}The product is $mult3${nc}"
+        fi
 if [ $x == d ];
-	then echo -e "${bold}Please enter first number${nc}"
+	then echo -e ${bold}Please enter first number${nc}
         read div1
-        echo -e "${bold}Please enter second number${nc}"
+        echo -e ${bold}Please enter second number${nc}
         read div2
 	if [ $div2 == 0 ];
 		then echo -e ${red}${bold}DONT DO THAT.${nc}
@@ -52,11 +52,10 @@ if [ $x == d ];
 		fi
 	div3=$((div1 / div2))
 	mod=$((div1 % div2))
-	echo -e "${bold}${greenb}The quotient is $div3${nc}"
-	echo -e "${bold}${greenb}The modulus is $mod${nc}"
+	echo -e ${bold}${greenb}The quotient is $div3${nc}
+	echo -e ${bold}${greenb}The modulus is $mod${nc}
 	fi
 if [ $x == q ];
 	then exit
-	fi 
+	fi
 done
-
