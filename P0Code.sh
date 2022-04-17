@@ -7,8 +7,8 @@ nc="\033[0m"
 echo -e ${bold}Enter your name to begin.${nc}
 read name
 
-echo -e ${green}Hi $name, welcome to ${bold}Serverely Limited Calculator™.${nc}
-while [ x != q ]
+echo -e ${green}Hi $name, welcome to ${bold}Severely Limited Calculator™.${nc}
+while [ true ]
 do
 echo -e "\n"
 echo -e "${green}${bold}What function would you like to perform?${nc}" 
