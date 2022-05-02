@@ -1,0 +1,63 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Result
+{
+
+    /*
+     * Complete the 'timeConversion' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts STRING s as parameter.
+     */
+
+    public static string timeConversion(string s)
+    {
+        bool goodConvert = DateTime.TryParse(s, out DateTime convertedTime);
+        //DateTime class's TryParse method handles exceptions with built-in try catch
+        //DateTime.TryParse allows us an out modifier, which lets us both:
+        //1. declare a variable within the parameter that we can reference later
+        //2. sets this variable as a formal parameter to pass on the method
+        //'s' is the original string, and convertedTime is the DateTime object we created, representing the converted value
+        //the TryParse method only returns a boolean
+        //so, the out variable 'convertedTime' is the value we will reference in the block of following if statement
+
+        if(goodConvert) // the logic here is if TryParse returns true, meaning conversion success, return the following:
+        {
+            return convertedTime.ToString("HH:mm:ss"); //ToString allows us this formatter (hh:mm:ss) which is given by the DateTime class
+            //we use capital HH in the formatter here because DateTime class's preset code makes this distinction which lets the compiler know we want 24 hour time, not 12.
+        }
+        else return "false"; //we need a return for all possibilities (i.e. we need to write a return for if(false)) so this line is necessary 
+                            //but for these HackerRank instances it should never return false
+    }
+
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+        TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
+
+        string s = Console.ReadLine();
+
+        string result = Result.timeConversion(s);
+
+        textWriter.WriteLine(result);
+
+        textWriter.Flush();
+        textWriter.Close();
+    }
+}
+

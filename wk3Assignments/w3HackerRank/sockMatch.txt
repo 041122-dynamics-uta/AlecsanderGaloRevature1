@@ -1,0 +1,80 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Result
+{
+
+    /*
+     * Complete the 'sockMerchant' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER n
+     *  2. INTEGER_ARRAY ar
+     */
+
+    public static int sockMerchant(int n, List<int> ar)
+    {
+        int pair = 0; //variable will ++ each time a pair is detected
+
+        int max = ar.Max() + 1; //Max() changes the value of a given index spot to the maximum allowed value, 
+                                //then we + 1, placing the value outside of the List's limit 
+                                //we essentially allow our iterator to ignore indices of our choosing (by setting that index value to max + 1)
+                                //we want to 'ignore' index spots that are already paired 
+                                //this allows pairs to get tallied and ignored instead of tallied and possibly counted again
+        for(int x=0;x<n;x++)
+        { 
+            if(ar[x]==max)      
+            {continue;}         
+            
+            for(int y=(x + 1);y<n;y++)   //iterator within an iterator here allows us to compare values of different index spots
+            {                           //note that x = 0 and y = x + 1 (y = x + 1 = the next index spot in the list after x)
+                if(ar[x] == ar[y])      //if these values are equal, pair gets a tally via pair++
+                {
+                    ar[x] = max; //as described above, setting ar[x] & ar[y] = ar.Max()+1 sets them outside of what will be checked by the iterator
+                    ar [y] = max; //we want this every time our if() establishes them as equal, or as "pairs"
+                    pair++;
+                    
+                    
+                    break;
+                    
+                    
+            
+                }
+            }
+        }
+        return pair;
+    }
+
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+        TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
+
+        int n = Convert.ToInt32(Console.ReadLine().Trim());
+
+        List<int> ar = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arTemp => Convert.ToInt32(arTemp)).ToList();
+
+        int result = Result.sockMerchant(n, ar);
+
+        textWriter.WriteLine(result);
+
+        textWriter.Flush();
+        textWriter.Close();
+    }
+}
+
