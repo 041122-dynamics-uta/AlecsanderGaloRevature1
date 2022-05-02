@@ -1,0 +1,72 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Result
+{
+
+    public static int migratoryBirds(List<int> arr)
+    {
+        List<int> birdTally = new List<int>() {0, 0, 0, 0, 0}; //this list birdTally will be used for tallying bird types during foreach iteration
+        int maxTally = 0; // this variable will contain the "tally" value, not the int value of the birdType
+        int winningBirdType = 0; // this variables denotes the bird id number with highest # of instances and is eventually used in result
+        foreach(int birdType in arr)  // note that 'int birdType' is declared here and will represent instances of List<int> arr
+                                            //thru each iteration
+        {
+            birdTally[birdType - 1]++; //our list birdTally will 'tally' an index spot using ++ for each respective birdType that gets iterated.
+                                        //we subtract 1 to account for index 0
+                                        // ex) input for birdType = 3 -> birdTally [3 - 1] which is index spot 2 in our birdTally list 
+                                        // so every iteration that birdType = 3, index spot 2 gets a tally (birdTally[2]++) 
+                                        
+            if(birdTally[birdType - 1] > maxTally)  // this if statement updates in each iteration which tally spot is greatest (which is 'maxTally')
+                {                                       //i.e. if value of birdTally[i] > maxTally, then lets set that birdTally[i] to be the 'new' maxTally
+                    maxTally = birdTally[birdType - 1];  
+                    winningBirdType = birdType - 1;  // 1 is subtracted when assigning winningBirdType for now because the -1 we use for the
+                                                        //0 index purpose earlier must be compensated for in the comparison later made on line 40
+                                                    //1 is added back upon method return which is on line 49
+                }
+            else if(birdTally[birdType - 1] == maxTally)    //this else if handles if two highest-instance birds appeared equal amount of times
+            {
+                if(winningBirdType > birdType - 1)           // else if (this iteration of birdTally == maxTally) run the following conditional
+
+                    {
+                        winningBirdType = birdType - 1;        //set the 'new' winningBirdType to the smaller of the two being compared inside if()
+                    }                                           // this satisfies the given directions of choosing the smaller id number when instance numbers are equivalent
+            }                          
+            
+        }
+        
+      return winningBirdType + 1;
+    }
+
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+        TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
+
+        int arrCount = Convert.ToInt32(Console.ReadLine().Trim());
+
+        List<int> arr = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt32(arrTemp)).ToList();
+
+        int result = Result.migratoryBirds(arr);
+
+        textWriter.WriteLine(result);
+
+        textWriter.Flush();
+        textWriter.Close();
+    }
+}
+

@@ -1,0 +1,92 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Result
+{
+
+    /*
+     * Complete the 'dayOfProgrammer' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts INTEGER year as parameter.
+     */
+
+    public static string dayOfProgrammer(int year)
+    {
+        int divFour = (year % 4); //divFour = modulus of year/4, so divisibility is confirmed if divFour==0
+        int divHundred = (year % 100);
+        int divFH = (year % 400);
+        string date = "13.09."; //this default value of 'date' is only returned if none of the below conditionals are true
+                                //otherwise, the value is changed accordingly within the conditional to account for a given special condition
+
+        //special case 1918
+        if (year == 1918)
+        {
+            return "26.09.1918"; //this is the 256th day in the special case of 1918
+        }
+        //gregorian leap years settled in the following:
+        if (year > 1918)
+        {
+            if ((divFour == 0) && (divHundred != 0)) //1st possible condition for a gregorian leap year
+                                                    //checks if year is divisible by 4 and not by 100
+            {
+                date = "12.09."; //date of 256th day in a leap year
+                string finalDate1 = string.Concat(date, year); //add given value of year to the end of 'date'
+                return finalDate1; //returns string composed of date + year
+            }
+            if ((divHundred == 0) && (divFH == 0)) //2nd possible condition for a gregorian leap year
+                                                    //checks if divisible by 100 && 400
+            {
+                date = "12.09."; //date of 256th day in a leap year
+                string finalDate2 = string.Concat(date, year);
+                return finalDate2;  //same concatenation applied here as above
+            }
+        
+        }
+        //julian leap years settled in the following:
+        else if (year < 1918)
+        {
+            if (divFour == 0) //julian leap year condition 
+            {
+                date = "12.09."; //date of 256th day in a leap year
+                string finalDate3 = string.Concat(date, year);
+                return finalDate3; //concatenated date
+            }
+        }
+        //if none of the above conditionals pass true, then it must not be a leap year or special condition
+        //so the default value of date is concatenated with year and returned here
+        string finalDate = string.Concat(date, year);
+        return finalDate;
+
+
+    }
+
+}
+
+class Solution
+{
+    public static void Main(string[] args)
+    {
+        TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
+
+        int year = Convert.ToInt32(Console.ReadLine().Trim());
+
+        string result = Result.dayOfProgrammer(year);
+
+        textWriter.WriteLine(result);
+
+        textWriter.Flush();
+        textWriter.Close();
+    }
+}
