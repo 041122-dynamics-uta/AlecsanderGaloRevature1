@@ -24,12 +24,38 @@ namespace RepoLayer
             
             return username;
         }
-        internal string DboToPassword(SqlDataReader reader)
-        {
-           string password = (string)reader[0];
+        internal Customer mapCustomer(SqlDataReader reader)
+        {   
+            Customer c1 = new Customer(){
+            CustomerID = (int)reader[0],
+            Fname = (string)reader[1],
+            Lname = (string)reader[2],
+            username = (string)reader[3],
+            password = (string)reader[4]
+            };
             
-            return password;
+            return c1;
         }
+        internal Item DboToInventory(SqlDataReader reader)
+        {
+            Item i = new Item
+            {
+                ItemID = (int)reader[0],
+                ItemName = (string)reader[1],
+                StoreID = (int)reader[2],
+                ItemCost = (int)reader[3],
+                Quantity = (int)reader[4],
+                Description = (string)reader[5]
+
+            };
+            return i;
+        }
+        // internal string (SqlDataReader reader)
+        // {
+        //    string password = (string)reader[0];
+            
+        //     return password;
+        // }
 
         // internal string DbotoTableString(SqlDataReader reader)
         // {

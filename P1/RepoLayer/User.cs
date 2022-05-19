@@ -75,6 +75,26 @@ public class credentialCheck //our repo class must return a list; mapper class m
         }
     }
 
+    public Customer retreiveCurrentCustomer(string theUsername) //business class's job will be to receive the result customer and assign it to cc (the customer object created in memory at the beginning)
+    {
+        string myQuery = $"SELECT * FROM Customers WHERE username = '{theUsername}';";
+        using(SqlConnection connect1 = new SqlConnection(connectionString))
+        {
+            SqlCommand command = new SqlCommand(myQuery, connect1);
+            connect1.Open();
+            SqlDataReader results = command.ExecuteReader();
+
+            Customer c = new Customer();
+            while(results.Read())
+            {
+               c = mapper.mapCustomer(results);
+
+            }
+            connect1.Close();
+            return c;
+        }
+    }
+
 }
 public class AddUser
 {   
