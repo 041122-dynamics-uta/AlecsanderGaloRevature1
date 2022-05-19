@@ -2,7 +2,7 @@
 using RepoLayer;
 namespace BusinessLayer
 {
-public class Login
+public class Login 
     {   public credentialCheck checkObject { get; set; } //repo object
 
         public Login() //dependency injection;
@@ -25,7 +25,10 @@ public class Login
             return String.Equals(y, check);
         }
 
-    
+        public Customer signUserIn(string username)
+        {   
+            return checkObject.retreiveCurrentCustomer(username);   
+        }
 
 
     }

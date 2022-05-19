@@ -3,38 +3,25 @@
 
     public class Customer
     {
+        public int? CustomerID { get; set; }
         public string? Fname { get; set; }
         public string? Lname { get; set; }
-        public string? username { get; set; } //fix G&S setup here later
-        // {
-        //     get {return username;}
-        //     set {
-        //     if (value.Length < 21 && value.Length > 3)
-        //     {
-        //         username = value;
-        //     }
-        //     else Console.WriteLine("Invalid Input");
-        // }
-        // }
+        public string? username { get; set; } 
         public string? password { get; set; }
-       // {
-        // get {return password;}
-        // set 
-        //     {
-        //     if (value.Length < 21 && value.Length > 4)
-        //     {
-        //         password = value;
-        //     }
-        //     else Console.WriteLine("Invalid Input");
-        //     }
-        //}
-
+       
 
         //to figure out what else the cust table needs, we have to solve
         //the order history problem
     }
-    public class Class1
+    public class Item
     {
+        public int? ItemID { get; set; }
+        public string? ItemName { get; set; }
+        public int? StoreID { get; set; }
+        public int? ItemCost { get; set; }
+        public int? Quantity { get; set; }
+        public string? Description { get; set; }
+        
 
     }
 }

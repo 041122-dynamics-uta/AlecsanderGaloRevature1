@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ModelsLayer;
 using BusinessLayer;
 
@@ -8,9 +9,10 @@ namespace shop
     class Program
     {
         static void Main(string[] args)
-        {   Customer c = new Customer();
-            Login cc = new Login();
-            AddToDb add = new AddToDb();
+        {   Customer c = new Customer(); //object customer from Models
+            Login cc = new Login(); //object of login from Business
+            AddToDb add = new AddToDb(); //object of addtodb from Repo
+            Inventory ii = new Inventory();
             
 
 
@@ -30,14 +32,14 @@ namespace shop
                     c.password = Console.ReadLine();
                     if (cc.checkPassword(c.username, c.password) == true) //checkPassword is supposed to compare (x, y) and return a bool
                     {
-                        //Console.WriteLine("it worked"); 
+                        c = cc.signUserIn(c.username);
                         break;
                     }
-                    else Console.WriteLine("does not match");
+                    else {Console.WriteLine("does not match"); continue;}
 
                 }
-                else Console.WriteLine("That username does not exist"); //if checkUsername returns false
-                break;
+                else {Console.WriteLine("That username does not exist"); //if checkUsername returns false
+                continue;}
                 case "register": 
                 Console.WriteLine("Enter your first name");
                 c.Fname = Console.ReadLine();
@@ -57,18 +59,33 @@ namespace shop
                 break;
                 default: c.username = "guest"; break;
             }
-            Console.WriteLine($"Welecome {c.Fname}");
-            Console.WriteLine("Please choose a store location");
-            
-            Console.WriteLine("'1' for California ad '2' for Texas");
-            
-            string storeChoice = Console.ReadLine();
-            // switch(storeChoice)
-            // {
-            //     case "1": 
-            // }
 
-            
+            Console.WriteLine($"Welecome {c.Fname} {c.CustomerID}");
+            while(true)
+            {
+                Console.WriteLine("Please choose a store location");
+                
+                Console.WriteLine("'1' for Southern California and '2' for Northern California");
+                int storeChoice = Convert.ToInt32(Console.ReadLine());
+                if (storeChoice != 1 && storeChoice != 2)
+                {
+                    Console.WriteLine("Choice must be 1 or 2, please try again");
+                    continue;
+                }
+                //Console.WriteLine(ii.storeChoice(storeChoice));
+                List<Item> store = ii.storeChoice(storeChoice);
+                foreach(Item i in store)
+                {
+                    Console.WriteLine($"ID#{i.ItemID}.{i.ItemName} | Cost:${i.ItemCost} | {i.Quantity} in stock | {i.Description} \n");
+                }
+
+                //businessmethod(storeChoice);
+                //print store inventory based on decision
+                //options presented: view cart, view history, add item, delete item
+
+                //storeChoice sent to business method, which sends it to repo
+                //repo returns list<items> to business which will return it to UI to be printed
+            }
             }
         }
     }
