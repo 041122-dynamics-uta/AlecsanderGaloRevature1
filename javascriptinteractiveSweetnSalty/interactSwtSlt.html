@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SweetnSalty</title>
+</head>
+<body>
+ <h1>Welcome to Sweet'nSalty interactive!</h1>
+    <p>In this game, you define the range and I will print all numbers in that range with a few extra conditions: Multiples of 3 return 'Sweet', multiples of 5 return 'Salty', and multiples of both return 'Sweet'nSalty', each instead of their resepctive number.</p>
+
+<h3>So first, please input the start number of the your desired range</h2>
+<form>
+    <label>First Number</label>
+    <input type="number" placeholder="First number goes here" id="firstnum">
+    <button type="button" id="btn1" onclick="buttonFunc()">Submit</button>
+</form>
+
+
+
+
+<script src="interactSwtSlt.js"></script>
+</body>
+</html>
+
+
+<!-- 
+1: create folder: html, js --css styling must be internal--
+2: link js to html
+3: begin with instructions text and then choice input box and enter
+Step 7 really should go here, INPUT VALIDATION
+Each choice input should print one at a time
+4: “please press enter to display your results” line
+5: as user progresses, alter/delete/add elements strictly thru JS DOM manipulation
+6: PLAN AHEAD for styling; set class/id attributes for respective css style rules 
+Apply classes dynamically using DOM manipulation;
+Class/id names will be used in the <head> section to add styles to specified class/id
+7: The start and stop numbers must be validated to be at least 200 apart and no more than 10,000 apart
+Start number < end number
+non-negative
+INPUT VALIDATION FOR JS
+Errors caught will 1. display explanation in red text 2. present the step again
+8: run swtnslty code except with 40 per line and user determined start and end numbers
+Instead of printing to console, results should appear as html content on webpage
+9: swts and slts should be in a class that prints them green 
+-->
