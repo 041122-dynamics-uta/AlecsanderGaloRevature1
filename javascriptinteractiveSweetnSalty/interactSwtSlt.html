@@ -7,6 +7,10 @@
     <title>SweetnSalty</title>
     <style>
         #secondPrompt {display: none;}
+        #thirdPrompt {display: none;}
+        .errmessage {color:red;}
+        .color {color: white; background-color: green;}
+
     </style>
 </head>
 <body>
@@ -22,16 +26,22 @@
 </form>
 <form id="secondPrompt">
     <h3>Now, input the end number of your range here and press enter or click submit</h3>
-    <label>First Number</label>
+    <label>Second Number</label>
     <input type="number" placeholder="Second number goes here" id="secondnum">
     <button type="button" id="btn2" onclick="buttonFunc2()">Submit</button>
     <div class="errmessage" id="err2"></div>
 
 </form>
-<form>
-    <h3>Press enter or click start to start the calulation</h3>
-    <input type="button" id="btn3" onclick="startFunc()">Start</input>
+<form id="thirdPrompt">
+    <h3 id ="start">Press submit to start the calulation</h3>
+    <label></label>
+    <input type="hidden" id="start1">
+    <button type="button" id="btn3" onclick="startFunc()">Submit</button>
+    <div class="errmessage" id="err2"></div>
+    
 </form>
+
+<div id="answer"></div>
 
 
 
@@ -61,4 +71,6 @@ Errors caught will 1. display explanation in red text 2. present the step again
 8: run swtnslty code except with 40 per line and user determined start and end numbers
 Instead of printing to console, results should appear as html content on webpage
 9: swts and slts should be in a class that prints them green 
+
+FOR COLORS: "apply those class/id names to the elements dynamically using DOM manipulation."
 -->
