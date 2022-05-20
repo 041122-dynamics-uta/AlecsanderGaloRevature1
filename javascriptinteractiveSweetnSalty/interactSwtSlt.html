@@ -6,24 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SweetnSalty</title>
     <style>
+        #begin1 {display: none;}
+        #begin2 {display: none;}
         #secondPrompt {display: none;}
         #thirdPrompt {display: none;}
         .errmessage {color:red;}
         .color {color: white; background-color: green;}
+        h3 {font-size: medium;}
 
     </style>
 </head>
 <body>
- <h1>Welcome to Sweet'nSalty interactive!</h1>
+    <button onclick="startGame()">Start Game</button>
+ <h1 id="begin1">Welcome to Sweet'nSalty interactive!
     <p>In this game, you define the range and I will print all numbers in that range with a few extra conditions: Multiples of 3 return 'Sweet', multiples of 5 return 'Salty', and multiples of both return 'Sweet'nSalty', each instead of their resepctive number.</p>
-
-<h3>First, please input the start number of the your desired range and press enter or click submit</h2>
+</h1>
+<h3 id="begin2">First, please input the start number of the your desired range and press enter or click submit
 <form>
     <label>First Number</label>
     <input type="number" placeholder="First number goes here" id="firstnum">
     <button type="button" id="btn1" onclick="buttonFunc()">Submit</button>
     <div class="errmessage" id="err1"></div>
 </form>
+</h3>
 <form id="secondPrompt">
     <h3>Now, input the end number of your range here and press enter or click submit</h3>
     <label>Second Number</label>
@@ -42,6 +47,11 @@
 </form>
 
 <div id="answer"></div>
+<div id="finalcounts"></div>
+
+<form id="reset">
+    
+</form>
 
 
 
