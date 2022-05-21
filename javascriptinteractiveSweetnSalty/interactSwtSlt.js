@@ -1,39 +1,29 @@
 
-document.getElementById("firstnum").addEventListener("keypress", function(e){ //this eventlistener and function lets user press enter as an alternative to clicking submit
+document.getElementById("firstnum").addEventListener("keypress", function(e){ //this eventlistener and parameter function lets user press enter as an alternative to clicking submit
     if (e.key === "Enter")
     {
-        e.preventDefault();
+        
         document.getElementById("btn1").click();
+        e.preventDefault();
         
     }
+    
 })
-document.getElementById("secondnum").addEventListener("keypress", function(e){ //this eventlistener and function lets user press enter as an alternative to clicking submit
+document.getElementById("secondnum").addEventListener("keypress", function(e){ 
     if (e.key === "Enter")
     {
-        e.preventDefault();
+       
         document.getElementById("btn2").click();
+        e.preventDefault();
     }
-})
+   
+}) 
 
-// var el = document.getElementById("start");
-// el.addEventListener("keydown", function(e) {
-//     if (e.key === "Enter") {
-//         e.preventDefault();
-//         document.getElementById("btn3").click();
-//     }
-// });
 
-// document.getElementById("start").addEventListener("keypress", function(e){ //this eventlistener and function lets user press enter as an alternative to clicking submit
-//     if (e.key === "Enter")
-//     {
-//         e.preventDefault();
-//         document.getElementById("btn3").click();
-//     }
-// })
 
 function startGame()
 {
-    document.getElementById("begin1").style.display = "block"
+    document.getElementById("begin1").style.display = "block" //sets display from "none" to "block" to show elements after button press
     document.getElementById("begin2").style.display = "block"
     
 }
@@ -42,17 +32,20 @@ var input1, input2; //declare but don't assign yet; assign in function to avoid 
 function buttonFunc()
 
 {   
-    
-    let errmessage = []
     input1 = document.getElementById("firstnum").value;
     console.log(input1);
-    if (input1 >= 0)
+    var inp1 = parseInt(input1);
+    if (input1 >= 0 && isNaN(inp1) == false)
     {
     document.getElementById("err1").innerHTML = '';
     //firstinput1 = document.getElementById("firstnum");
     document.getElementById("secondPrompt").style.display = "block"
     }
-    else document.getElementById("err1").append('Number cannot be negative');
+    else
+    {   
+        document.getElementById("err1").innerHTML = '';
+        document.getElementById("err1").append('Input must be a number and cannot be negative');
+    }
     //errmessage.push("Number cannot be negative")
     //console.log(input1);
 
@@ -71,7 +64,7 @@ function buttonFunc2()
         //console.log(in2)
 
     }
-    else document.getElementById("err2").append('Your inputs must be at least 200 and no more than 10000 apart. Your second input must be greater than your first.')
+    else document.getElementById("err2").append('Your inputs must be at least 200 apart and no more than 10000 apart. Your second input must be greater than your first.')
 
 }
 
