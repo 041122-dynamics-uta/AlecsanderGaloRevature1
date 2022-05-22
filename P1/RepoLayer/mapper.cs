@@ -61,6 +61,61 @@ namespace RepoLayer
             };
             return ucc;
         }
+         internal updateCurrentCart DboToCurrentCart(SqlDataReader reader)
+        {
+            updateCurrentCart up = new updateCurrentCart
+            {
+                ItemID = (int)reader[1],
+                ItemName = (string)reader[2],
+                StoreID = (int)reader[7],
+                ItemCost = (int)reader[3],
+                Quantity = (int)reader[4],
+                ItemTotal = (int)reader[5]
+
+            };
+            return up;
+        }
+        internal updateOrders DboToOrder(SqlDataReader reader)
+        {
+            updateOrders upO = new updateOrders
+            {
+                ItemID = (int)reader[1],
+                ItemName = (string)reader[2],
+                StoreID = (int)reader[7],
+                ItemCost = (int)reader[3],
+                Quantity = (int)reader[4],
+                //ItemTotal = (int)reader[5],
+                CustomerID = (int)reader[6]
+
+            };
+            return upO;
+        }
+        internal updateOrders DboToInvUpdate(SqlDataReader reader)
+        {
+            updateOrders o = new updateOrders()
+            {   
+                ItemID = (int)reader[1],
+                Quantity = (int)reader[4]
+            };
+            return o;
+        }
+        internal OrderHistory DboToOrderHistory(SqlDataReader reader)
+        {
+            OrderHistory o = new OrderHistory()
+            {
+                ItemID = (int)reader[1],
+                ItemName = (string)reader[2],
+                StoreID = (int)reader[6],
+                ItemCost = (int)reader[3],
+                Quantity = (int)reader[4],
+                ItemTotal = (int)reader[5],
+                CustomerID = (int)reader[7],
+                OrderID = (Guid)reader[8],
+                DateOrdered = (string)reader[9]
+
+            };
+            return o;
+        }
         // internal string (SqlDataReader reader)
         // {
         //    string password = (string)reader[0];

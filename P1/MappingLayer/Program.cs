@@ -14,6 +14,8 @@ namespace shop
             AddToDb add = new AddToDb(); //object of addtodb from Repo
             Inventory ii = new Inventory();
             sendtoRepo sr = new sendtoRepo();
+            Retrieve r = new Retrieve();
+            Checkout ch = new Checkout();
             
 
 
@@ -124,22 +126,80 @@ namespace shop
 
 
                         case "v":
-
+                        while(true)
+                        {
+                            Console.WriteLine("Your current cart:");
+                            List<updateCurrentCart> up =  r.viewCart();
+                            int? cartTotal = 0;
+                            foreach(updateCurrentCart i in up)
+                                {   
+                                    Console.WriteLine($"ID#{i.ItemID}.{i.ItemName} | Cost:${i.ItemCost} | Quantity: {i.Quantity} | Item Total: {i.ItemTotal} \n");
+                                    cartTotal = cartTotal + i.ItemTotal;
+                                }
+                            Console.WriteLine($"Your cart total is {cartTotal}");
+                            Console.WriteLine("Enter 'd' to choose an item to delete\nEnter 'q' to exit back to menu");
+                            string opt = Console.ReadLine();
+                            if(opt != "d" && opt != "q" )
+                            {
+                                return;
+                            }
+                            if(opt == "d")
+                            {
+                                Console.WriteLine("Choose an item to delete by ID#");
+                                int delete = Convert.ToInt32(Console.ReadLine());
+                                r.deleteCartItem(delete);
+                            }
+                            if (opt == "q") 
+                            {   break;
+                            }
+                        }
+                        break;
 
                         case "h":
+                        List<OrderHistory> hist = r.orderHistory(c);
+                        Console.WriteLine("SOCAL ORDERS:");
+                        int? ordertotal1 = 0;
+                        foreach(OrderHistory o in hist)
+                        {   if(o.StoreID == 1){
+                            Console.WriteLine($"ID#{o.ItemID}.{o.ItemName} | Cost:${o.ItemCost} | Quantity: {o.Quantity} | Date Ordered: {o.DateOrdered}");
+                            ordertotal1 = ordertotal1 + o.ItemTotal;
+                            }
+                            
+                        }
+                        Console.WriteLine($"Total Cost: {ordertotal1}");
 
+                        
+                        Console.WriteLine("NORCAL ORDERS:");
+                         int? ordertotal2 = 0;
+                        foreach(OrderHistory o in hist)
+                        {
+                            if(o.StoreID == 2)
+                            {
+                                Console.WriteLine($"ID#{o.ItemID}.{o.ItemName} | Cost:${o.ItemCost} | Quantity: {o.Quantity} | Date Ordered: {o.DateOrdered}");
+                                ordertotal2 = ordertotal2 + o.ItemTotal;
+                            }
+                        }
+                        Console.WriteLine($"Total Cost: {ordertotal2}");
+                        break;
 
                         case "q":
+                        ch.pushCart(); //update orders table
+                        ch.subtractFromInv(); //subtract item quantities from orders table
+                        ch.clearCart(); //truncates the current cart table after checkout
+                        break;
 
 
                         case "c":
 
 
-                        case "l": break;
+                        case "l":
+                        //reset all object values and restart program?
+                         break;
 
                     }
 
                }
+               
                
 
                 //businessmethod(storeChoice);
