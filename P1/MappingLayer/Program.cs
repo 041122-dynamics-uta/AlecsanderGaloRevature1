@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ModelsLayer;
+using System.Diagnostics;
 using BusinessLayer;
 
 
@@ -16,17 +17,18 @@ namespace shop
             sendtoRepo sr = new sendtoRepo();
             Retrieve r = new Retrieve();
             Checkout ch = new Checkout();
-            
+           
 
 
             
             Console.WriteLine("Welcome! Please type login or register");
-            string choice = Console.ReadLine();
+           
             while(true) //encompassing login/registation loop
-            {
-                if(choice != "login" || choice != "register")
+            {   string choice = Console.ReadLine();
+                if(choice != "login" && choice != "register")
                 {
                     Console.WriteLine("Incorrect format, please try again");
+                    continue;
                 }
             switch (choice) //login or register
             {   
@@ -62,6 +64,7 @@ namespace shop
                 c.password = Console.ReadLine();
                 //business method that takes Customer and adds their attributes to database
                 add.AddUsertoRepo(c);
+                c.CustomerID = add.retreiveID(c.username);
 
                 break;
                 default: c.Fname = "guest"; break;
@@ -197,6 +200,21 @@ namespace shop
                          break;
 
                     }
+                Console.WriteLine("Continue shopping? (Enter 's')\nChange stores? (Enter 'c')\nLogout? (Enter 'l')");
+                string cont = Console.ReadLine();
+                if(cont == "s"){continue;}
+                else if(cont == "c"){break;}
+                else if(cont == "l"){System.Environment.Exit(0);}
+
+                // Starts a new instance of the program itself
+                // System.Diagnostics.Process.Start(Application.ExecutablePath);
+
+                // // Closes the current process
+                // Environment.Exit(0);
+
+                //break = choose store
+                //continue = continue shopping
+                //reset = logout
 
                }
                

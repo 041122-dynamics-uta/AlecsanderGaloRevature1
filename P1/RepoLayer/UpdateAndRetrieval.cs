@@ -179,6 +179,25 @@ namespace RepoLayer
             return o;
         }
     }
+    // public List<OrderHistory> RetrieveOrderTotal(Guid OID) 
+    // {
+    //     string myQuery = $"SELECT ItemTotal FROM Orders WHERE OrderID = '{OID}';";
+    //     using(SqlConnection connect1 = new SqlConnection(connectionString))
+    //     {
+    //         SqlCommand command = new SqlCommand(myQuery, connect1);
+    //         connect1.Open();
+    //         SqlDataReader results = command.ExecuteReader();
+
+    //         List<OrderHistory> o = new List<OrderHistory>();
+    //         while(results.Read())
+    //         {
+    //             o.Add(mapper.DboToOrderHistory(results));
+
+    //         }
+    //         connect1.Close();
+    //         return o;
+    //     }
+    // }
 
 
 
