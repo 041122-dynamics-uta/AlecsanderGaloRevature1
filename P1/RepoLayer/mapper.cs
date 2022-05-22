@@ -50,6 +50,17 @@ namespace RepoLayer
             };
             return i;
         }
+        internal updateCurrentCart mapItem(SqlDataReader reader)
+        {
+            updateCurrentCart ucc = new updateCurrentCart
+            {
+                ItemID = (int)reader[0],
+                ItemName = (string)reader[1],
+                ItemCost = (int)reader[3],
+                StoreID = (int)reader[2]
+            };
+            return ucc;
+        }
         // internal string (SqlDataReader reader)
         // {
         //    string password = (string)reader[0];
