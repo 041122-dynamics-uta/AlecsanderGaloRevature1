@@ -30,6 +30,8 @@ public class Login
             return checkObject.retreiveCurrentCustomer(username);   
         }
 
+        
+
 
     }
 public class AddToDb
@@ -44,6 +46,13 @@ public class AddToDb
         {
             addObject.customertoDB(c);
         }
+
+        public int retreiveID(string username)
+        {
+            return addObject.getID(username);
+        }
+
+        
 
     }
 
