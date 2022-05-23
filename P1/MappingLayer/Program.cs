@@ -10,9 +10,10 @@ namespace shop
     class Program
     {
         static void Main(string[] args)
-        {   Customer c = new Customer(); //object customer from Models
-            Login cc = new Login(); //object of login from Business
-            AddToDb add = new AddToDb(); //object of addtodb from Repo
+        {   //instatiation of all needed objects
+            Customer c = new Customer(); 
+            Login cc = new Login(); 
+            AddToDb add = new AddToDb();
             Inventory ii = new Inventory();
             sendtoRepo sr = new sendtoRepo();
             Retrieve r = new Retrieve();
@@ -23,7 +24,7 @@ namespace shop
             
             Console.WriteLine("Welcome! Please type login or register");
            
-            while(true) //encompassing login/registation loop
+            while(true) 
             {   string choice = Console.ReadLine();
                 if(choice != "login" && choice != "register")
                 {
@@ -144,7 +145,7 @@ namespace shop
                             string opt = Console.ReadLine();
                             if(opt != "d" && opt != "q" )
                             {
-                                return;
+                                break;
                             }
                             if(opt == "d")
                             {
@@ -192,11 +193,12 @@ namespace shop
                         break;
 
 
-                        case "c":
+                        case "c": //continues to options outside of loop
+                        break;
 
 
                         case "l":
-                        //reset all object values and restart program?
+                        //continues to options outside of loop
                          break;
 
                     }
@@ -206,26 +208,13 @@ namespace shop
                 else if(cont == "c"){break;}
                 else if(cont == "l"){System.Environment.Exit(0);}
 
-                // Starts a new instance of the program itself
-                // System.Diagnostics.Process.Start(Application.ExecutablePath);
-
-                // // Closes the current process
-                // Environment.Exit(0);
-
-                //break = choose store
-                //continue = continue shopping
-                //reset = logout
-
                }
                
                
 
-                //businessmethod(storeChoice);
-                //print store inventory based on decision
-                //options presented: view cart, view history, add item, delete item
+                
 
-                //storeChoice sent to business method, which sends it to repo
-                //repo returns list<items> to business which will return it to UI to be printed
+             
             }
             }
         }

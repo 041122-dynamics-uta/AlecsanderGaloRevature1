@@ -10,8 +10,7 @@
         public string? password { get; set; }
        
 
-        //to figure out what else the cust table needs, we have to solve
-        //the order history problem
+        
     }
     public class Item
     {
