@@ -9,11 +9,13 @@ namespace shopTest.Test
         public AddUser addObject { get; set; } = new AddUser(); //repo object
         public credentialCheck ccObject { get; set; } = new credentialCheck();
         public UpdateAndRetrieval up = new UpdateAndRetrieval();
+        public DisplayStore disp = new DisplayStore();
             public RepoTesting()
             {
                 this.addObject = new AddUser();
                 this.ccObject = new credentialCheck();
                 this.up = new UpdateAndRetrieval();
+                this.disp = new DisplayStore();
             }
         
 
@@ -44,7 +46,8 @@ namespace shopTest.Test
             string result = ccObject.password(username);
 
             //Assert
-            Assert.Equal("asdfasdf", result);
+            Assert.Equal("asdfasdf", result); //asdfasdf if the corresponding password to the username
+                                                //that we inputted
         }
 
         [Fact]
@@ -71,7 +74,22 @@ namespace shopTest.Test
             Customer c = ccObject.retreiveCurrentCustomer(username);
 
             //assert
-            Assert.Equal(3, c.CustomerID);
+            Assert.Equal(3, c.CustomerID); //passes if correct customer ID is returned
+        }
+
+        [Fact]
+        public void DisplayInventoryCorrectly()
+        {
+            //arrange
+            int storeChoice = 1;
+
+            //act
+            List<Item> inv = disp.Inventory(storeChoice);
+
+            //assert
+            Assert.Equal("Chanterelle", inv[0].ItemName);
+            Assert.Equal(100, inv[0].ItemID);
+
         }
 
     }
