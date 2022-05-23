@@ -10,7 +10,8 @@ namespace BusinessLayer
             this.updateOject = new UpdateAndRetrieval();
         }
 
-        public void sendItem(updateCurrentCart ucc)
+        public void sendItem(updateCurrentCart ucc) //sends item, quantity, and mapped data to
+                                                    //the CurrentCart table
         {
             updateOject.mapItem(ucc);
         }

@@ -3,9 +3,9 @@ using System.Data.SqlClient;
 namespace RepoLayer
 {
     public class MapperClass
-    {   //this "mapper" method takes DB data in List form (sent in from repo layer) and assigns its contents as Customer object attributes
+    {   //this "mapper" method takes DB data in List form (sent in from a repo class) and assigns its contents as Customer object attributes
         //this method returns a customer object 'c' to repo layer which will then return it to
-        //business layer for manipulation or comparison
+        
         internal Customer DboToCustomer(SqlDataReader reader)
         {
             Customer c = new Customer

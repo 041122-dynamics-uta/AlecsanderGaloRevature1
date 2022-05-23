@@ -10,18 +10,20 @@ namespace BusinessLayer
             this.updateOject = new UpdateAndRetrieval();
         }
 
-        public void pushCart()
+        public void pushCart() //get CurrentCart table data and use it to update Orders
         {
             updateOject.pushOrder();
             
         }
 
-        public void subtractFromInv()
+        public void subtractFromInv() //get CurrentCart quantities to subtract from 
+                                        //Inventory table by ID
         {
             updateOject.updateInventory();
         }
         
-        public void clearCart()
+        public void clearCart()        //truncate the CurrentCart table once all other
+                                        //checkout operations complete
         {
             updateOject.truncateCart();
         }
