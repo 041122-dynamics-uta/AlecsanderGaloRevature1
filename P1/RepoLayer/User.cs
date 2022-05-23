@@ -34,7 +34,7 @@ public class credentialCheck //our repo class must return a list; mapper class m
             return c1;
         }
     }
-    public List<string> usernameList() 
+    public List<string> usernameList() //get list of usernames for comparison
     {
         string myQuery = "SELECT * FROM Customers;";
         using(SqlConnection connect1 = new SqlConnection(connectionString))
@@ -53,7 +53,7 @@ public class credentialCheck //our repo class must return a list; mapper class m
             return c1;
         }
     }
-    public string password(string user)
+    public string password(string user) //get password for login comparison
     {
         string myQuery = $"SELECT password FROM Customers WHERE username = '{user}'";
         using(SqlConnection connect1 = new SqlConnection(connectionString))
@@ -98,7 +98,7 @@ public class credentialCheck //our repo class must return a list; mapper class m
 }
 public class AddUser
 {   
-    public void customertoDB(Customer c)
+    public void customertoDB(Customer c) //registration; use input given by user to populate dB row
     {
     string connectionString = "Server=tcp:alecgaloserver.database.windows.net,1433;Initial Catalog=AlecGaloDb;Persist Security Info=False;User ID=alecgalodb;Password=Al3c4lec97!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
@@ -114,7 +114,7 @@ public class AddUser
         }
    
     }
-    public int getID(string username)
+    public int getID(string username) //retrieve ID assigned upon registration
     {   string connectionString = "Server=tcp:alecgaloserver.database.windows.net,1433;Initial Catalog=AlecGaloDb;Persist Security Info=False;User ID=alecgalodb;Password=Al3c4lec97!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         string myQuery = $"SELECT CustomerID FROM Customers WHERE username = '{username}'";

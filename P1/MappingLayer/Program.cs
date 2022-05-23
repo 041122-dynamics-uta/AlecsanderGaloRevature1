@@ -24,7 +24,7 @@ namespace shop
             
             Console.WriteLine("Welcome! Please type login or register");
            
-            while(true) 
+            while(true) //encompassing loop
             {   string choice = Console.ReadLine();
                 if(choice != "login" && choice != "register")
                 {
@@ -65,7 +65,7 @@ namespace shop
                 c.password = Console.ReadLine();
                 //business method that takes Customer and adds their attributes to database
                 add.AddUsertoRepo(c);
-                c.CustomerID = add.retreiveID(c.username);
+                c.CustomerID = add.retreiveID(c.username); //db assigns ID to new cust, we retrieve and assign locally
 
                 break;
                 default: c.Fname = "guest"; break;
@@ -84,7 +84,7 @@ namespace shop
                     continue;
                 }
                 //Console.WriteLine(ii.storeChoice(storeChoice));
-                List<Item> store = ii.storeChoice(storeChoice);
+                List<Item> store = ii.storeChoice(storeChoice); //inventory object ii, access storeChoice(), returns list of items to print
                 if(storeChoice == 1){Console.WriteLine("WELCOME TO OUR SOCAL INVENTORY");}
                 else if(storeChoice == 2){Console.WriteLine("WELCOME TO OUR NORCAL INVENTORY");}
                 foreach(Item i in store)
