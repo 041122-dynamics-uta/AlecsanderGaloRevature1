@@ -12,7 +12,7 @@ namespace RepoLayer
     {
         this.mapper = new MapperClass();
     }
-    public List<Item> Inventory(int i) 
+    public List<Item> Inventory(int i) //int i is store number, queries WHERE StoreID = i;
     {
         string myQuery = $"SELECT * FROM Inventory WHERE StoreID = {i};";
         using(SqlConnection connect1 = new SqlConnection(connectionString))

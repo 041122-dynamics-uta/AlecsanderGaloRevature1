@@ -18,14 +18,14 @@ public class Login
            return c1.Contains(x); //check if list c1 contains username x, Contains() returns a bool
         }
 
-        public bool checkPassword(string x, string y)
+        public bool checkPassword(string x, string y) //takes username and password, repo fetches the correct password to compare
         {
             string check = checkObject.password(x);
             //Console.WriteLine(check);
             return String.Equals(y, check);
         }
 
-        public Customer signUserIn(string username)
+        public Customer signUserIn(string username) //get all user data based on username (always unique)
         {   
             return checkObject.retreiveCurrentCustomer(username);   
         }
@@ -42,12 +42,12 @@ public class AddToDb
             this.addObject = new AddUser();
         }
 
-        public void AddUsertoRepo(Customer c)
+        public void AddUsertoRepo(Customer c) //register
         {
             addObject.customertoDB(c);
         }
 
-        public int retreiveID(string username)
+        public int retreiveID(string username) //fetch ID
         {
             return addObject.getID(username);
         }

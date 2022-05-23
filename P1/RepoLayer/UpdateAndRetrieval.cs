@@ -13,7 +13,7 @@ namespace RepoLayer
         this.mapper = new MapperClass();
     }
 
-    public void mapItem(updateCurrentCart ucc)
+    public void mapItem(updateCurrentCart ucc) //grab all selected item data to update CurrentCart
     {
         string myQuery = $"SELECT * FROM Inventory WHERE ItemID = {ucc.ItemID};";
         //string myQuery2 = $"INSERT INTO CurrentCart (ItemID_FK, ItemName, ItemCost, Quantity, CustomerID_FK, StoreID) VALUES ('{ucc.ItemID}', '{ucc1.ItemName}', '{ucc1.ItemCost}', '{ucc1.Quantity}', '{ucc.CustomerID}', '{ucc.StoreID}')";
@@ -32,6 +32,8 @@ namespace RepoLayer
             }
             connect1.Close();
 
+            //ucc contains local data, combines with ucc1 which pulls static data from dB
+
             string myQuery2 = $"INSERT INTO CurrentCart (ItemID_FK, ItemName, ItemCost, Quantity, CustomerID_FK, StoreID) VALUES ('{ucc.ItemID}', '{ucc1.ItemName}', '{ucc1.ItemCost}', '{ucc.Quantity}', '{ucc.CustomerID}', '{ucc1.StoreID}')";
             //now take that object and send it to CC table
 
@@ -44,7 +46,7 @@ namespace RepoLayer
 
         }
     }
-    public List<updateCurrentCart> RetreiveCart() 
+    public List<updateCurrentCart> RetreiveCart() //view cart function; get from CurrentCart table
     {
         string myQuery = $"SELECT * FROM CurrentCart;";
         using(SqlConnection connect1 = new SqlConnection(connectionString))
@@ -63,7 +65,7 @@ namespace RepoLayer
             return up;
         }
     }
-    public void pushOrder() 
+    public void pushOrder() //part 1 of checkout; SELECT form CurrentCart then use data to update Orders
     {
         string myQuery = $"SELECT * FROM CurrentCart;";
         using(SqlConnection connect1 = new SqlConnection(connectionString))
@@ -94,7 +96,7 @@ namespace RepoLayer
 
         }
     }
-    public void updateInventory() 
+    public void updateInventory() //part 2 of checkout; use CurrentCart ItemIDs and Quantities to subtract from Inventory
     {
         string myQuery = $"SELECT * FROM CurrentCart;";
         using(SqlConnection connect1 = new SqlConnection(connectionString))
@@ -115,9 +117,9 @@ namespace RepoLayer
                         //WHERE ItemID = @ItemID
                         //method takes object
             
-            foreach(updateOrders up in up1)
+            foreach(updateOrders up in up1) //foreach update object, use ItemID to subtract appropriate quantity
            { string myQuery2 = $"UPDATE Inventory SET QuantityAvailable = QuantityAvailable - {up.Quantity} WHERE ItemID = {up.ItemID}";
-            //now take that object and send it to CC table
+            
 
             SqlCommand command1 = new SqlCommand(myQuery2, connect1);
             
