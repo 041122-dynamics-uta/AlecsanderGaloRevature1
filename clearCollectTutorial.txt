@@ -1,0 +1,29 @@
+ClearCollect() replaces the records of a given table with a new set of records that you can define. 
+
+The ClearCollect() function is simply a combination of Clear() and Collect().
+
+Clear() truncates a given table [clears values and leaves the structure/columns behind].
+
+Collect() is used to add records to a table.
+
+Hence, ClearCollect() truncates and then adds your new values.
+
+SYNTAX: 
+
+ClearCollect(EmployeesTable,
+{EmployeeID: 1, EmployeeName: John},
+{EmployeeID: 2, EmployeeName: Jane},
+{EmployeeID: 3, EmployeeName: Jeff})
+//The above code will clear EmployeesTable and replace each row with the values we define within the curly braces
+
+First parameter 'EmployeesTable' is the name of the table you are replacing values for.
+
+Each pair of curly braces {} contains the attributes of one entity/row on the table. Each represents one record of the table, or one employee in this case.
+Each {} contains the following syntax: {Column1: Value1, Column2: Value2}
+
+Note the commas separating each parameter in ClearCollect(TableName, {}, {}, {}) and also commas within {} separating column/value pairs 
+
+ClearCollect() can be combined with other functions so that those functions can manipulate table data and add it back without creating duplicate values.
+
+ClearCollect() is often used with Sort() functions to avoid creating a duplicate of table values when sorting(ClearCollect will clear table FIRST, THEN your program can add sorted values back instead of adding the sorted values on top of the original values). Marcel has the tutorial for Sort() functions! 
+
